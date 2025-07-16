@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Article')
+@section('title', 'Product')
 
-@section('breadcrumbs', 'Edit Article')
+@section('breadcrumbs', 'Edit Product')
 
 @section('second-breadcrumb')
     <li>Edit</li>
@@ -20,13 +20,23 @@
                 <div class="col-12 mb-3">
                     <h3 align="center"></h3>
                 </div>
-                <form action="{{route('articles.update', [$article->id])}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('products.update', [$product->id])}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
-                    <div class="col-10">
+                    <div class="col-10">    
+                        <div class="mb-3">
+                            <label for="harga" class="font-weight-bold">Harga Produk (Rp)</label>
+                            <input type="number" name="harga" id="harga" class="form-control {{$errors->first('harga') ? 'is-invalid' : ''}}" value="{{ $product->harga }}" required>
+                            <div class="invalid-feedback">{{ $errors->first('harga') }}</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kuantitas" class="font-weight-bold">Kuantitas Produk</label>
+                            <input type="number" name="kuantitas" id="kuantitas" class="form-control {{$errors->first('kuantitas') ? 'is-invalid' : ''}}" value="{{ $product->kuantitas }}" required>
+                            <div class="invalid-feedback">{{ $errors->first('kuantitas') }}</div>
+                        </div>
                         <div class="mb-4">
                             <label for="title" class="font-weight-bold">Title</label>
-                            <input type="text" name="title" placeholder="Article Title" class="form-control {{$errors->first('title') ? "is-invalid" : ""}}" value="{{$article->title}}" required>
+                            <input type="text" name="title" placeholder="Product Title" class="form-control {{$errors->first('title') ? "is-invalid" : ""}}" value="{{$product->title}}" required>
                             <div class="invalid-feedback"> {{$errors->first('title')}}</div>
                         </div>
                         <div class="mb-3">
@@ -35,7 +45,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="content" class="font-weight-bold">Content</label>
-                            <textarea id="content" class="form-control ckeditor" name="content" rows="10" cols="50">{{$article->content}}</textarea>
+                            <textarea id="content" class="form-control ckeditor" name="content" rows="10" cols="50">{{$product->content}}</textarea>
                         </div>
                         <div class="mb-3 mt-4">
                             <button class="btn btn-secondary" name="save_action" value="DRAFT">Save as draft</button>
@@ -53,7 +63,7 @@
     {{-- ckeditor --}}
     <script>
         CKEDITOR.replace( 'content', {
-            filebrowserUploadUrl    : "{{route('articles.upload', ['_token' => csrf_token()])}}",
+            filebrowserUploadUrl    : "{{route('products.upload', ['_token' => csrf_token()])}}",
             filebrowserUploadMethod : 'form'
         });
     </script>
@@ -74,7 +84,7 @@
             }
         });
 
-        var categories = {!! $article->categories !!}
+        var categories = {!! $product   ->categories !!}
 
             categories.forEach(function(category){
                 var option = new Option(category.name, category.id, true, true);

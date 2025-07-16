@@ -6,106 +6,112 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\About;
 use App\Category;
-use App\Article;
+use App\Product;
 
 class DataController extends Controller
 {
-    // about
-    public function get_about(){
+    // Tentang
+    public function get_about()
+    {
         $about = About::all();
         return response()->json([
-            'message'   => 'Success',
-            'status'    => 200,
-            'data'      => $about,
+            'message' => 'Success',
+            'status' => 200,
+            'data' => $about,
         ], 200);
     }
 
-    // all category
-    public function get_categories(){
+    // Semua Kategori
+    public function get_categories()
+    {
         $categories = Category::all();
         return response()->json([
-            'message'   => 'Success',
-            'status'    => 200,
-            'data'      => $categories,
+            'message' => 'Success',
+            'status' => 200,
+            'data' => $categories,
         ], 200);
     }
 
-    // category by id
-    public function get_category_by_id($id){
+    // Kategori berdasarkan ID
+    public function get_category_by_id($id)
+    {
         $category = Category::find($id);
-        if($category){
+        if ($category) {
             return response()->json([
-                'message'   => 'Success',
-                'status'    => 200,
-                'data'      => $category,
+                'message' => 'Success',
+                'status' => 200,
+                'data' => $category,
             ], 200);
-        }else{
+        } else {
             return response()->json([
-                'message'   => 'Data Not Found',
-                'status'    => 404,
-                'Data'      => [],
+                'message' => 'Data Not Found',
+                'status' => 404,
+                'data' => [],
             ], 404);
         }
     }
 
-    // all article
-    public function get_all_articles(Request $request) {
-        $keyword  = $request->get('s') ? $request->get('s') : '';
-        $category = $request->get('c') ? $request->get('c') : '';
+    // Semua Produk
+    public function get_all_products(Request $request)
+    {
+        $keyword = $request->get('s') ?? '';
+        $category = $request->get('c') ?? '';
 
-        $articles = \App\Article::with('categories')
-                                    ->whereHas('categories', function($q) use($category){
-                                        $q->where('name', 'LIKE', "%$category%");
-                                    })
-                                    ->where('status', 'PUBLISH')
-                                    ->where('title', 'LIKE', "%$keyword%")
-                                    ->paginate(10);
+        $products = Product::with('categories')
+            ->whereHas('categories', function ($q) use ($category) {
+                $q->where('name', 'LIKE', "%$category%");
+            })
+            ->where('status', 'PUBLISH')
+            ->where('judul', 'LIKE', "%$keyword%")
+            ->paginate(10);
 
         return response()->json([
-            'message'   => 'Success',
-            'status'    => 200,
-            'data'      => $articles,
+            'message' => 'Success',
+            'status' => 200,
+            'data' => $products,
         ], 200);
     }
 
-    // article by id
-    public function get_article_by_id($id){
-        $article = Article::find($id);
-        if($article){
+    // Produk berdasarkan ID
+    public function get_product_by_id($id)
+    {
+        $product = Product::with('categories')->find($id);
+        if ($product) {
             return response()->json([
-                'message'   => 'Success',
-                'status'    => 200,
-                'data'      => $article,
+                'message' => 'Success',
+                'status' => 200,
+                'data' => $product,
             ], 200);
-        }else{
+        } else {
             return response()->json([
-                'message'   => 'Data Not Found',
-                'status'    => 404,
-                'data'      => [],
-            ], 200);
+                'message' => 'Data Not Found',
+                'status' => 404,
+                'data' => [],
+            ], 404);
         }
     }
 
-    // article by category name
-    public function get_article_by_category_name($category){
-        $articles = \App\Article::with('categories')
-                                    ->whereHas('categories', function($q) use($category){
-                                        $q->where('name', 'LIKE', "%$category%"); })
-                                    ->paginate(10);
-        if($articles){
-            return response()->json([
-                'message'   => 'Success',
-                'status'    => 200,
-                'data'      => $articles,
-            ], 200);
-        }else{
-            return response()->json([
-                'message'   => 'Data Not Found',
-                'status'    => 404,
-                'data'      => [],
-            ], 200);
-        }
-        
-    }
+    // Produk berdasarkan nama kategori
+    public function get_product_by_category_name($category)
+    {
+        $products = Product::with('categories')
+            ->whereHas('categories', function ($q) use ($category) {
+                $q->where('name', 'LIKE', "%$category%");
+            })
+            ->paginate(10);
 
+        if ($products->count()) {
+            return response()->json([
+                'message' => 'Success',
+                'status' => 200,
+                'data' => $products,
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Data Not Found',
+                'status' => 404,
+                'data' => [],
+            ], 404);
+        }
+    }
 }

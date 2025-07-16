@@ -2,93 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Category;
 use App\About;
-use App\Article;
-use App\Destination;
 
 class UserController extends Controller
 {
-    
-  public function __construct()
-  {
-      // $this->middleware('auth');
-  }
+    public function home()
+    {
+        return view('user.home', [
+            'categories' => Category::all(),
+            'about'      => About::all()
+        ]);
+    }
 
-  
-  public function home()
-  {
-    $data = [
-      'categories'    => Category::all(),
-      'about'         => About::all()
-    ];
-    return view('user/home', $data);
-  }
+    public function produk(Request $request)
+    {
+        $keyword  = $request->get('s') ?? '';
+        $category = $request->get('c') ?? '';
 
-  public function blog(Request $request){
+        $products = Product::with('categories')
+                    ->when($category, function($query) use ($category) {
+                        $query->whereHas('categories', function($q) use ($category) {
+                            $q->where('name', 'LIKE', "%$category%");
+                        });
+                    })
+                    ->where('status', 'PUBLISH')
+                    ->where('title', 'LIKE', "%$keyword%")
+                    ->orderBy('created_at','desc')
+                    ->paginate(10);
 
-    $keyword    = $request->get('s') ? $request->get('s') : '';
-    $category   = $request->get('c') ? $request->get('c') : '';
+        $recents = Product::select('title','slug')
+                    ->where('status', 'PUBLISH')
+                    ->orderBy('created_at','desc')
+                    ->limit(5)->get();
 
-    $articles = Article::with('categories')
-                ->whereHas('categories', function($q) use($category){
-                    $q->where('name', 'LIKE', "%$category%");
-                })
-                ->where('status', 'PUBLISH')
-                ->where('title', 'LIKE', "%$keyword%")
-                ->orderBy('created_at','desc')
-                ->paginate(10);
-    $recents = Article::select('title','slug')->where('status', 'PUBLISH')->orderBy('created_at','desc')->limit(5)->get();
+        return view('user.produk', [
+            'products' => $products,
+            'recents'  => $recents
+        ]);
+    }
 
-    $data = [
-      'articles'  => $articles,
-      'recents'   => $recents
-    ];
+    public function show_product($slug)
+{
+    $product = Product::where('slug', $slug)->first();
 
-    return view('user/blog', $data);
-  }
+    // Jika tidak ditemukan, kembalikan 404
+    if (!$product) {
+        abort(404);
+    }
 
+    $recents = Product::select('title','slug')
+        ->where('status', 'PUBLISH')
+        ->orderBy('created_at','desc')
+        ->limit(5)
+        ->get();
 
-  public function show_article($slug)
-  {
-    $articles   = Article::where('slug', $slug)->first();
-    $recents    = Article::select('title','slug')->where('status', 'PUBLISH')->orderBy('created_at','desc')->limit(5)->get();
-    $data = [
-      'articles'  => $articles,
-      'recents'   => $recents
-    ];
-    return view('user/blog', $data);
-  }
+    return view('user.produk', [
+        'products' => $product,
+        'recents' => $recents
+    ]);
+}
 
-  public function destination(Request $request){
-      $keyword    = $request->get('s') ? $request->get('s') : '';
-
-      $destinations           = Destination::where('title', 'LIKE', "%$keyword%")->orderBy('created_at', 'desc')->paginate(10);
-      $other_destinations     = Destination::select('title','slug')->where('status', 'PUBLISH')->orderBy('created_at','desc')->limit(5)->get();
-
-      $data = [
-          'destinations'  => $destinations,
-          'other'         => $other_destinations
-      ];
-
-      return view('user/destination', $data);
-  }
-
-  public function show_destination($slug){
-      $destinations       = Destination::where('slug', $slug)->firstOrFail();
-      $other_destinations = Destination::select('title','slug')->where('status', 'PUBLISH')->orderBy('created_at','desc')->limit(5)->get();
-
-      $data = [
-          'destinations'  => $destinations,
-          'other'         => $other_destinations
-      ];
-
-      return view('user/destination', $data);
-  }
-
-  public function contact(){
-      return view('user/contact');
-  }
+    public function contact()
+    {
+        return view('user.contact');
+    }
 }

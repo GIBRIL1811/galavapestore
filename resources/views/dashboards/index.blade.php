@@ -18,7 +18,7 @@
         <!-- Widgets  -->
             <div class="row">
                 <div class="col-lg-4 col-md-12">
-                    <a href="{{route('articles.index', ['status' => 'publish'])}}">
+                    <a href="{{route('products.index', ['status' => 'publish'])}}">
                         <div class="card">
                             <div class="card-body">
                                 <div class="stat-widget-five">
@@ -28,7 +28,7 @@
                                     <div class="stat-content">
                                         <div class="text-left dib">
                                             <div class="stat-text"><span class="count">{{$data ["publish"]}}</span></div>
-                                            <div class="stat-heading">Article Publish</div>
+                                            <div class="stat-heading">Product Publish</div>
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-12">
-                    <a href="{{route('articles.index', ['status'=>'draft'])}}">
+                    <a href="{{route('products.index', ['status'=>'draft'])}}">
                         <div class="card">
                             <div class="card-body">
                                 <div class="stat-widget-five">
@@ -48,7 +48,7 @@
                                     <div class="stat-content">
                                         <div class="text-left dib">
                                             <div class="stat-text"><span class="count">{{$data ["draft"]}}</span></div>
-                                            <div class="stat-heading">Article Draf</div>
+                                            <div class="stat-heading">Product Draf</div>
                                         </div>
                                     </div>
                                 </div>

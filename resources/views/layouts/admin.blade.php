@@ -43,11 +43,8 @@
                     <li class="{{$url=='categories'?'active':''}}">
                         <a href="{{url('admin/categories')}}"><i class="menu-icon fa fa-list-ul"></i>Categories </a>
                     </li>
-                    <li class="{{$url=='articles'?'active':''}}">
-                        <a href="{{url('admin/articles')}}"> <i class="menu-icon fa fa-newspaper-o"></i> Articles</a>
-                    </li>
-                    <li class="{{$url=='destinations'?'active':''}}">
-                        <a href="{{url('admin/destinations')}}"><i class="menu-icon fa fa-paper-plane-o"></i>Destinations </a>
+                    <li class="{{$url=='products'?'active':''}}">
+                        <a href="{{url('admin/products')}}"> <i class="menu-icon fa fa-newspaper-o"></i> Products</a>
                     </li>
                     <li class="{{$url=='abouts'?'active':''}}">
                         <a href="{{url('admin/abouts')}}"><i class="menu-icon fa fa-user"></i>About </a>
