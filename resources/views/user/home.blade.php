@@ -9,7 +9,7 @@
             height: 180px;
         }
         #hero{
-            background: url('{{asset('user/images/hero-bg.jpg')}}') top center;
+            background: url('{{asset('user/images/Ggs.png')}}') top center;
         }
         .image-center{
             display: block;
@@ -21,8 +21,8 @@
 @endsection
 
 @section('hero')
-    <h1>Welcome to Jogja-Travel</h1>
-    <h2>Kami adalah agen travel terpercaya dan jaminan layanan perencanaan wisata yang mudah dan murah</h2>
+    <h1>Welcome to Gala Vapestore</h1>
+    <h2>Toko vape terpercaya yang menyediakan produk berkualitas dan pengalaman vaping terbaik</h2>
     <a href="#about" class="btn-get-started">Get Started</a>
 @endsection
 
@@ -38,7 +38,7 @@
               @if($about && count($about) > 0)
                 <p>{!! $about[0]->caption !!}</p>
               @else
-                <p>Tidak ada informasi tentang kami.</p>
+                <p>GalaVape adalah toko vape modern yang menghadirkan berbagai pilihan device, liquid premium, dan aksesoris vaping untuk pemula maupun pro. Dengan pelayanan ramah dan harga kompetitif, kami hadir untuk memenuhi kebutuhan komunitas vaper di Indonesia.</p>
               @endif
             </div>
   
@@ -59,28 +59,28 @@
         <div class="container wow fadeIn">
           <div class="section-header">
             <h3 class="section-title">Mengapa Memilih Kami?</h3>
-            <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+            <p class="section-description">Kami memberikan layanan dan produk terbaik bagi pengalaman vaping yang aman dan memuaskan.</p>
           </div>
           <div class="row">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
               <div class="box">
                 <div class="icon"><i class="fa fa-shield"></i></div>
-                <h4 class="title">Keamanan Berkendara</h4>
-                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                <h4 class="title">Kualitas Produk Terjamin</h4>
+                <p class="description">Semua produk kami telah melalui proses kurasi ketat dan original dari distributor resmi.</p>
               </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
               <div class="box">
                 <div class="icon"><i class="fa fa-money"></i></div>
-                <h4 class="title">Harga Ekonomis</h4>
-                <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+                <h4 class="title">Harga Terjangkau</h4>
+                <p class="description">Dapatkan device dan liquid favorit dengan harga bersaing tanpa mengorbankan kualitas.</p>
               </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
               <div class="box">
                 <div class="icon"><i class="fa fa-thumbs-up"></i></div>
-                <h4 class="title">Kenyamanan Pelanggan</h4>
-                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                <h4 class="title">Pelayanan Ramah</h4>
+                <p class="description">Tim kami siap membantu kamu memilih produk terbaik, dengan konsultasi gratis seputar vaping.</p>
               </div>
             </div>
           </div>
@@ -93,11 +93,11 @@
         <div class="container wow fadeIn">
           <div class="row">
             <div class="col-lg-9 text-center text-lg-left">
-              <h3 class="cta-title">Bergabung dan Bepergian Bersama Kami</h3>
-              <p class="cta-text"> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <h3 class="cta-title">Bergabung dengan Komunitas GalaVape</h3>
+              <p class="cta-text"> Temukan device terbaik, liquid favorit, dan suasana hangout seru di GalaVape. Dapatkan promo spesial dan informasi terkini seputar dunia vaping.</p>
             </div>
             <div class="col-lg-3 cta-btn-container text-center">
-              <a class="cta-btn align-middle" href="#">Contact</a>
+              <a class="cta-btn align-middle" href="#">Hubungi Kami</a>
             </div>
           </div>
   
@@ -108,8 +108,8 @@
       <section id="category">
         <div class="container wow fadeInUp">
           <div class="section-header">
-            <h3 class="section-title">Blog Kami</h3>
-            <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+            <h3 class="section-title">Produk Kami</h3>
+            <p class="section-description">Temukan beragam kategori produk GalaVape yang dirancang untuk semua kebutuhan vaping kamu.</p>
           </div>
           <div class="row">
   
@@ -135,7 +135,7 @@
         <div class="container wow fadeInUp">
           <div class="section-header">
             <h3 class="section-title">Galeri</h3>
-            <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+            <p class="section-description">Intip suasana toko kami, koleksi produk terbaru, dan keseruan komunitas GalaVape melalui galeri foto berikut.</p>
           </div>
         </div>
   

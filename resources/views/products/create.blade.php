@@ -45,9 +45,9 @@
 
                     {{-- Deskripsi --}}
                     <div class="form-group">
-                        <label for="content">Deskripsi Produk</label>
-                        <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror" rows="6">{{ old('content') }}</textarea>
-                        @error('content')
+                        <label for="konten">Deskripsi Produk</label>
+                        <textarea name="konten" id="konten" class="form-control @error('konten') is-invalid @enderror" rows="6">{{ old('konten') }}</textarea>
+                        @error('konten')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

@@ -44,8 +44,8 @@
                             <select name="categories[]" id="categories" multiple class="col-12"></select>
                         </div>
                         <div class="mb-3">
-                            <label for="content" class="font-weight-bold">Content</label>
-                            <textarea id="content" class="form-control ckeditor" name="content" rows="10" cols="50">{{$product->content}}</textarea>
+                            <label for="konten" class="font-weight-bold">Deskripsi</label>
+                            <textarea id="konten" class="form-control ckeditor" name="konten" rows="10" cols="50">{{$product->konten}}</textarea>
                         </div>
                         <div class="mb-3 mt-4">
                             <button class="btn btn-secondary" name="save_action" value="DRAFT">Save as draft</button>

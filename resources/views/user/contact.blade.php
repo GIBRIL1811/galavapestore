@@ -12,7 +12,7 @@
 @endsection
 
 @section('hero')
-    <h1>Contact Jogja-Travel</h1>
+    <h1>Contact GALA VAPESTORE</h1>
     <h2>Bergabung dan liburan bersama Kami</h2>
 @endsection
 
