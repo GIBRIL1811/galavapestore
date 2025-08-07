@@ -33,10 +33,10 @@
   <header id="header">
     <div class="container d-flex justify-content-between align-items-center">
 
-      <div id="logo">
-        <a href="{{ url('/') }}">
-          <img src="{{ asset('user/images/icon.png') }}" alt="Logo Gala Vape Store" style="margin-right: 5px;" />
-          <h2 class="d-inline text-light">Gala Vape Store</h2>
+      <div id="logo" class="d-flex align-items-center">
+        <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">
+          <img src="{{ asset('user/images/new_logo_gala.png') }}" alt="Logo Gala Vape Store" style="height: 38px; margin-right: 6px;" />
+          <h2 class="mb-0 text-light" style="font-size: 28px;">Gala Vapestore</h2>
         </a>
       </div>
 
